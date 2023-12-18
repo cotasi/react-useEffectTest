@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import react from 'react';
+import { useState } from 'react';
+import gnbdata from './data/gnb.json';
 
 function App() {
+  const myfun = (v) => { alert(v);}
+  const [tabvar,settab] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ul className="d-flex">
+      {
+        gnbdata.map((e,i)=>{
+          return(
+            <>
+              <li onClick={()=>{ myfun(i)}}>{e.product}</li>
+              { tabvar === i &&  <div>
+                      { i }
+                                </div> }
+            </>
+          );
+        })
+      }
+      </ul>
     </div>
   );
 }
